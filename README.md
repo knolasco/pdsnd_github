@@ -1,12 +1,5 @@
-Hello, I am a Data Scientist working with AAA. In my free time I like to surf, cook vegan meals, and play video games. I have recently completed my Masters in Data Science and am looking for an opportunity to apply the skills I've gained from school and the industry on interesting and impactful projects.
-
-
-
 # BikeShare Project
-
 The purpose of this repository is to share the project completed for the Udacity Data Science Nano-Degree.
-
-## Description of Files
 
 - bikeshare.py
 

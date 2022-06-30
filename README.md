@@ -9,4 +9,4 @@ This file will display statistics for three bikeshare datasets. The cities used 
 
 - requirements.txt
 
-This file is used to keep track of the necessary packages needed to run the bikeshare.py script.
+This file is used to keep track of the important packages needed to run the bikeshare.py script.

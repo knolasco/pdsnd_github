@@ -275,6 +275,9 @@ class DescribeBikeShare:
         self.data['End Time'] = pd.to_datetime(self.data['End Time'])
 
 def main():
+    """
+    This will run if the script is called
+    """
     describer = DescribeBikeShare()
     describer.ask()
 

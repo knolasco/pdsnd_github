@@ -1,2 +1,3 @@
 .github/**
 /all-project-files/*.csv
+/venv

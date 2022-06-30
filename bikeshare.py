@@ -1,8 +1,8 @@
 import os
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+import plotly.express as px
+from tabulate import tabulate
 
 DATA_PATH = 'all-project-files'
 
@@ -59,7 +59,7 @@ class DescribeBikeShare:
         self.exit_script = False
         n_rows = self.grouped.shape[0]
         ind = 0
-        print(self.grouped.iloc[ind: ind + 5])
+        print(tabulate(self.grouped.iloc[ind: ind + 5], headers = 'keys'))
         while ind < n_rows:
             self.show_more = input('Would you like to see 5 more rows? (yes or no): ')
             if self.show_more.lower().strip() in ['none', '"none"']:
@@ -70,7 +70,7 @@ class DescribeBikeShare:
                 print('Please respond with yes or no (or None to quit) : ')
             elif self.show_more.lower().strip() == 'yes':
                 ind += 5
-                print(self.grouped.iloc[ind: ind + 5])
+                print(tabulate(self.grouped.iloc[ind: ind + 5], headers = 'keys'))
             else:
                 break
         if not self.exit_script:
@@ -141,18 +141,17 @@ class DescribeBikeShare:
         """
         Visualize the results. Line plot with start time in x-axis
         """
-        # set up plots
-        fig, _ = plt.subplots(1,1)
-        fig.set_size_inches(20,10)
+        
         if self.first_answer_choice == 1:
-            g = sns.lineplot(data = self.grouped, x = 'Start Time', y = self.volume_col, hue = self.hue_choice)
+            fig = px.line(self.grouped, x = 'Start Time', y = self.volume_col, color = self.hue_choice,\
+                title = 'Line Plot for "{}" Aggregated {}'.format(self.first_question_dict[self.first_answer_choice], self.third_question_dict[self.third_answer_choice][0]))
         elif self.first_answer_choice == 2:
-            g = sns.lineplot(data = self.grouped, x = 'Start Time', y = 'Start_hour', hue = self.hue_choice)
+            fig = px.line(self.grouped, x = 'Start Time', y = 'Start_hour', color = self.hue_choice,\
+                title = 'Line Plot for "{}" Aggregated {}'.format(self.first_question_dict[self.first_answer_choice], self.third_question_dict[self.third_answer_choice][0]))
         else:
-            g = sns.lineplot(data = self.grouped, x = 'Start Time', y = self.volume_col, hue = self.hue_choice)
-
-        g.set(title = 'Line Plot for "{}" aggregated {}'.format(self.first_question_dict[self.first_answer_choice], self.third_question_dict[self.third_answer_choice][0]))
-        plt.show()
+            fig = px.line(self.grouped, x = 'Start Time', y = self.volume_col, color = self.hue_choice,\
+                title = 'Line Plot for "{}" Aggregated {}'.format(self.first_question_dict[self.first_answer_choice], self.third_question_dict[self.third_answer_choice][0]))
+        fig.show()
 
     def process_first_answer(self):
         """
